@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Exit immediately if any command fails
+set -e
+
+# Your GitHub repo URL
+REPO_URL="https://github.com/Shubham-kumar2311/ml_codes.git"
+
+echo "🚀 Initializing Git..."
+git init
+
+echo "📂 Adding all files..."
+git add .
+
+echo "💬 Committing changes..."
+git commit -m "Force upload on $(date '+%Y-%m-%d %H:%M:%S')"
+
+echo "🌐 Connecting to remote repo..."
+git remote add origin $REPO_URL 2>/dev/null || echo "Remote already exists."
+
+echo "⬆️ Pushing files to GitHub (forcefully)..."
+git branch -M main
+git push -u origin main --force
+
+echo "🧹 Removing .git folder..."
+rm -rf .git
+
+echo "✅ Upload complete and .git folder removed."
+
+# Keep terminal open
+echo ""
+read -p "Press ENTER to close..."
